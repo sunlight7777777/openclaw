@@ -1,20 +1,18 @@
 import { Type } from "@sinclair/typebox";
+import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/string-coerce-runtime";
+import { extractToolSend } from "openclaw/plugin-sdk/tool-send";
+import { requiresExplicitMatrixDefaultAccount } from "./account-selection.js";
+import { resolveDefaultMatrixAccountId, resolveMatrixAccount } from "./matrix/accounts.js";
 import {
   createActionGate,
   readNumberParam,
   readStringParam,
   ToolAuthorizationError,
-} from "openclaw/plugin-sdk/channel-actions";
-import type {
-  ChannelMessageActionAdapter,
-  ChannelMessageActionContext,
-  ChannelMessageActionName,
-  ChannelMessageToolDiscovery,
-} from "openclaw/plugin-sdk/channel-contract";
-import { normalizeLowercaseStringOrEmpty } from "openclaw/plugin-sdk/string-coerce-runtime";
-import { extractToolSend } from "openclaw/plugin-sdk/tool-send";
-import { requiresExplicitMatrixDefaultAccount } from "./account-selection.js";
-import { resolveDefaultMatrixAccountId, resolveMatrixAccount } from "./matrix/accounts.js";
+  type ChannelMessageActionAdapter,
+  type ChannelMessageActionContext,
+  type ChannelMessageActionName,
+  type ChannelMessageToolDiscovery,
+} from "./runtime-api.js";
 import type { CoreConfig } from "./types.js";
 
 const MATRIX_PLUGIN_HANDLED_ACTIONS = new Set<ChannelMessageActionName>([

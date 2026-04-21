@@ -238,15 +238,4 @@ describe("runtime api guardrails", () => {
       );
     }
   });
-
-  it("keeps Matrix's narrow runtime-setter entrypoint pinned to a single export", () => {
-    const setterFile = bundledPluginFile({
-      rootDir: ROOT_DIR,
-      pluginId: "matrix",
-      relativePath: "runtime-setter-api.ts",
-    });
-    expect(readExportStatements(setterFile)).toEqual([
-      'export { setMatrixRuntime } from "./src/runtime.js";',
-    ]);
-  });
 });
